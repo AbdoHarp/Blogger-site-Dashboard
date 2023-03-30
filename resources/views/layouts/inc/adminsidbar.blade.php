@@ -34,6 +34,19 @@
                         <a class="nav-link " href="{{ url('/admin/post') }}">View Posts</a>
                     </nav>
                 </div>
+                <a class="nav-link " data-bs-toggle="collapse" data-bs-target="#collapseuser" aria-expanded="false"
+                    aria-controls="collapseuser">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Users
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse " id="collapseuser" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link " href="{{ url('/admin/add_users') }}">Add User</a>
+                        <a class="nav-link " href="{{ url('/admin/users') }}">View Users</a>
+                    </nav>
+                </div>
                 <div class="sb-sidenav-menu-heading">Addons</div>
                 <a class="nav-link" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
