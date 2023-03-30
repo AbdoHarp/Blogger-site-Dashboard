@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">
                 <h4>View Posts
-                    <a href="{{ url('/admin/add_category') }}" class="btn btn-success btn-sm float-end">
+                    <a href="{{ url('/admin/add_post') }}" class="btn btn-success btn-sm float-end">
                         Add Post
                     </a>
                 </h4>
