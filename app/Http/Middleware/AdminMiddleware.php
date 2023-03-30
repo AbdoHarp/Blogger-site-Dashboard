@@ -21,10 +21,10 @@ class AdminMiddleware
             if (Auth::user()->role_as == 1) {
                 return $next($request);
             } else {
-                return redirect('/home')->with('Not Access for this page');
+                return redirect('/home')->with('status', 'Not Access for this page');
             }
         } else {
-            return redirect('/home')->with('Not Access for this page');
+            return redirect('/home')->with('status', 'please login first');
         }
     }
 }
