@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\categories\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Posts\PostController;
+use App\Http\Controllers\Admin\User\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth', 'theAdmin'])->prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'theAdmin'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index');
     });
@@ -41,6 +42,14 @@ Route::middleware(['auth', 'theAdmin'])->prefix('admin')->group(function () {
         Route::get('/edit_post/{post_id}', 'edit');
         Route::put('/edit_post/{post_id}', 'update');
         Route::get('/delete_post/{post_id}', 'destroy');
+    });
+    Route::controller(UsersController::class)->group(function () {
+        Route::get('/users', 'index');
+        Route::get('/add_users', 'create');
+        Route::post('/add_users', 'store');
+        Route::get('/edit_users/{users_id}', 'edit');
+        Route::put('/edit_users/{users_id}', 'update');
+        Route::get('/delete_users/{users_id}', 'destroy');
     });
 });
 
