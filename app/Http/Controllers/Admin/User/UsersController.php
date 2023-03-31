@@ -31,8 +31,8 @@ class UsersController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->name),
-            'role_as' => $request->role_as,
+            'password' => Hash::make($request->password),
+            'role_as' => $request->role_as
         ]);
 
         return redirect('admin/users')->with('message', 'User Added Successfully');;
@@ -51,18 +51,17 @@ class UsersController extends Controller
             'password' => ['required', 'string', 'min:8'],
             'role_as' => ['required', 'integer'],
         ]);
-        User::find($user_id)
-            ->update([
-                'name' => $request->name,
-                'password' => Hash::make($request->name),
-                'role_as' => $request->role_as,
-            ]);
+        User::findOrFail($user_id)->update([
+            'name' => $request->name,
+            'password' => Hash::make($request['password']),
+            'role_as' => $request->role_as
+        ]);
         return redirect('admin/users')->with('message', 'User Added Successfully');;
     }
 
     public function destroy($user_id)
     {
-        $user = User::find($user_id);
+        $user = User::findOrFail($user_id);
         $user->delete();
         return redirect('admin/users')->with('message', 'User Deleted Successfully');;
     }
