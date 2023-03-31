@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\categories\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Posts\PostController;
 use App\Http\Controllers\Admin\User\UsersController;
+use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/', [FrontendController::class, 'index']);
+Route::get('/tutorial/{category_slug}', [FrontendController::class, 'viewcategory']);
+Route::get('/tutorial/{category_slug}/{post_slug}', [FrontendController::class, 'viewpost']);
+
+// route for statk About page
+Route::get('/about', [FrontendController::class, 'aboutIndex']);
+
 
 
 Route::prefix('admin')->middleware(['auth', 'theAdmin'])->group(function () {
@@ -56,5 +67,3 @@ Route::prefix('admin')->middleware(['auth', 'theAdmin'])->group(function () {
 
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
