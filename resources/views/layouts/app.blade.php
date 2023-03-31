@@ -8,79 +8,63 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('meta_description')">
+    <meta name="keywords" content="@yield('meta_keyword')">
+    <meta name="author" content="Abdelrahman of Web it">
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('asstes/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('asstes/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('asstes/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('asstes/css/owl.theme.default.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+        @include('layouts/inc/frontendnavbar')
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
         <main class="py-4">
             @yield('content')
         </main>
+        @include('layouts/inc/frontendfooter')
     </div>
+
+    <script src="{{ asset('asstes/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('asstes/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('asstes/js/scripts.js') }}"></script>
+    <script src="{{ asset('asstes/js/owl.carousel.min.js') }}"></script>
+    <script>
+        $('.category-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+    </script>
+
 </body>
 
 </html>
