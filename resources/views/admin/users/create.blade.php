@@ -41,7 +41,7 @@
                                 <input name="email" type="email" class="form-control">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label>Passwordd</label><br />
+                                <label>Password</label><br />
                                 <input name="password" type="password" class="form-control">
                             </div>
                             <div class="col-md-6 mb-3">
